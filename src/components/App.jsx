@@ -16,6 +16,27 @@ export const INITIAL_STATE = {
 };
 
 export class App extends Component {
+    componentDidMount = () => {
+    let loadValues = JSON.parse(localStorage.getItem('LOCALSTORAGE_KEY'));
+    if (loadValues === null) {
+      this.setState({
+        contacts: [],
+      });
+    } else {
+      this.setState({
+        contacts: loadValues,
+      });
+    }
+  };
+
+   componentDidUpdate = () => {
+    try {
+      const initialState = JSON.stringify(this.state.contacts);
+      localStorage.setItem('LOCALSTORAGE_KEY', initialState);
+    } catch (error) {
+      console.error('Set state error: ', error.message);
+    }
+  };
   state = {
    ...INITIAL_STATE,
   };
