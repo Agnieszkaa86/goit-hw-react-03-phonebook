@@ -16,9 +16,8 @@ export const INITIAL_STATE = {
 };
 
 export class App extends Component {
-  
-   state = {
-    ...INITIAL_STATE,
+  state = {
+   ...INITIAL_STATE,
   };
   searchByName = (event) => {
     this.setState({ filter: event.target.value.toLowerCase() });
