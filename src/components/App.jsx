@@ -17,22 +17,24 @@ export const INITIAL_STATE = {
 
 export class App extends Component {
     componentDidMount = () => {
-    let loadValues = JSON.parse(localStorage.getItem('LOCALSTORAGE_KEY'));
-    if (loadValues === null) {
+    let contactsFromStorage = JSON.parse(localStorage.getItem('contacts'));
+    if (contactsFromStorage === null) {
       this.setState({
         contacts: [],
       });
     } else {
       this.setState({
-        contacts: loadValues,
+        contacts: contactsFromStorage,
       });
     }
   };
 
-   componentDidUpdate = () => {
+   componentDidUpdate = (prevProps) => {
     try {
-      const initialState = JSON.stringify(this.state.contacts);
-      localStorage.setItem('LOCALSTORAGE_KEY', initialState);
+      const contacts = JSON.stringify(this.state.contacts);
+      if (prevProps.contacts == !contacts.length) {
+        
+      }localStorage.setItem('contacts', contacts);
     } catch (error) {
       console.error('Set state error: ', error.message);
     }
