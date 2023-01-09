@@ -32,9 +32,9 @@ export class App extends Component {
    componentDidUpdate = (prevProps) => {
     try {
       const contacts = JSON.stringify(this.state.contacts);
-      if (prevProps.contacts == !contacts.length) {
+      if (prevProps.contacts !== contacts.length) {
         
-      }localStorage.setItem('contacts', contacts);
+      } localStorage.setItem('contacts', contacts);
     } catch (error) {
       console.error('Set state error: ', error.message);
     }
